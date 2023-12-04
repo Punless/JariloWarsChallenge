@@ -1,0 +1,10 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1701664770
+icon.svg::CompressedTexture2D::8953440806201536287::1692925153::1692925189::1::::<><>::
+menu.gd::GDScript::-1::1692926223::0::1::::<>Control<>::
+menu.tscn::PackedScene::5990842432896392485::1693108598::0::1::::<><>::res://menu.gd
+::res://Scenes/::1693108599
+Camera2D.gd::GDScript::-1::1693108475::0::1::::<>Camera2D<>::
+Camera.gd::GDScript::-1::1692932623::0::1::::<>Camera2D<>::
+Game.tscn::PackedScene::2571099840791295381::1693108599::0::1::::<><>::res://Scenes/Camera2D.gd
+UI.tscn::PackedScene::4493151272072956086::1693108180::0::1::::<><>::res://Scenes/Camera2D.gd
