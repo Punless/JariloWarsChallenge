@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crmakgll7jps4"]
 
-[ext_resource type="Script" path="res://menu.gd" id="1_ws1cw"]
+[ext_resource type="Script" path="res://menu.gd" id="1_dqmki"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ws1cw")
+script = ExtResource("1_dqmki")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -25,16 +25,46 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "JARILO
+WARS"
+
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Options"
+text = "Help
+"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 21.0
+offset_right = 773.0
+offset_bottom = 435.0
+text = "Instructions:
+Left-CLick to create a selection box.
+Right Click to move all selected units.
+Click on the tent to create a new unit for 50 wood. 
+Move your units near a tree to start chopping the wood.
+"
+
+[node name="ReturnButton" type="Button" parent="RichTextLabel"]
+layout_mode = 0
+offset_top = 132.0
+offset_right = 343.0
+offset_bottom = 193.0
+text = "Return to Menu
+"
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="RichTextLabel/ReturnButton" to="." method="_on_return_button_pressed"]

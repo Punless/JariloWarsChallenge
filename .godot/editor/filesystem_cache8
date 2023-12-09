@@ -1,10 +1,71 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701664770
-icon.svg::CompressedTexture2D::8953440806201536287::1692925153::1692925189::1::::<><>::
-menu.gd::GDScript::-1::1692926223::0::1::::<>Control<>::
-menu.tscn::PackedScene::5990842432896392485::1693108598::0::1::::<><>::res://menu.gd
-::res://Scenes/::1693108599
-Camera2D.gd::GDScript::-1::1693108475::0::1::::<>Camera2D<>::
-Camera.gd::GDScript::-1::1692932623::0::1::::<>Camera2D<>::
-Game.tscn::PackedScene::2571099840791295381::1693108599::0::1::::<><>::res://Scenes/Camera2D.gd
-UI.tscn::PackedScene::4493151272072956086::1693108180::0::1::::<><>::res://Scenes/Camera2D.gd
+::res://::1702093882
+dialogue.json::JSON::-1::1702076146::0::1::::<><>::
+icon.svg::CompressedTexture2D::8953440806201536287::1701665493::1701665493::1::::<><>::
+menu.gd::GDScript::-1::1701665493::0::1::::<>Control<>::
+menu.tscn::PackedScene::5990842432896392485::1702093709::0::1::::<><>::res://menu.gd
+ui.tscn::PackedScene::6785040403647784810::1702093709::0::1::::<><>::res://Scenes/UI.gd
+WhatstheSuitation.wav::AudioStreamWAV::6745298823554136213::1701742924::1701742916::1::::<><>::
+::res://addons/::1702093860
+ChoiceButton.gd::GDScript::-1::1702075630::0::1::::<>Button<>::
+ChoiceButton.tscn::PackedScene::5552785538777899493::1702093709::0::1::::<><>::res://addons/ChoiceButton.gd
+dialogue.json::JSON::-1::1702093860::0::1::::<><>::
+DialogueBox.gd::GDScript::-1::1702093297::0::1::::<>Node2D<>::
+dialogue_box.tscn::PackedScene::7393126113458513409::1702093709::0::1::::<><>::res://addons/DialogueBox.gd<>uid://b7yi53yhlh4qq::::res://Assets/Geppie.png<>res://addons/ez_dialogue/ez_dialogue_node.gd
+::res://addons/ez_dialogue/::1702005850
+dialogue_reader.gd::GDScript::-1::1702005845::0::1::::EzDialogueReader<>Node<>::
+ez_dialogue.gd::GDScript::-1::1702005845::0::1::::<>EditorPlugin<>::
+ez_dialogue_node.gd::GDScript::-1::1702005845::0::1::::EzDialogue<>EzDialogueReader<>::
+icon.png::CompressedTexture2D::8344372716270988894::1702005845::1702005850::1::::<><>::
+plugin.cfg::TextFile::-1::1702005845::0::1::::<><>::
+::res://addons/ez_dialogue/dialogue_resource/::1702005845
+dialogue_command.gd::GDScript::-1::1702005845::0::1::::DialogueCommand<>Resource<>::
+dialogue_node.gd::GDScript::-1::1702005845::0::1::::DialogueNode<>Resource<>::
+dialogue_parser.gd::GDScript::-1::1702005845::0::1::::DialogueParser<>RefCounted<>::
+dialogue_resource.gd::GDScript::-1::1702005845::0::1::::DialogueResource<>Resource<>::
+dialogue_response.gd::GDScript::-1::1702005845::0::1::::DialogueResponse<>Resource<>::
+::res://addons/ez_dialogue/main_screen/::1702005850
+dialogue_graph_node.tscn::PackedScene::7794172821545211886::1702005845::0::1::::<><>::
+ezd_syntax.gd::GDScript::-1::1702005845::0::1::::<>SyntaxHighlighter<>::
+main.tscn::PackedScene::6824435439852214696::1702005845::0::1::::<><>::res://addons/ez_dialogue/main_screen/main_panel.gd<>uid://buwm2t0sdxgw::::res://addons/ez_dialogue/main_screen/ProggyVector Regular.ttf<>res://addons/ez_dialogue/main_screen/name_editor.gd<>res://addons/ez_dialogue/main_screen/ezd_syntax.gd
+main_panel.gd::GDScript::-1::1702005845::0::1::::MainDiagPanel<>Panel<>::
+name_editor.gd::GDScript::-1::1702005845::0::1::::<>LineEdit<>::
+ProggyVector Regular.ttf::FontFile::1869180179748597081::1702005845::1702005850::1::::<><>::
+::res://Assets/::1702005615
+48c1rviilc481.png::CompressedTexture2D::2162905760034883084::1701829374::1701829602::1::::<><>::
+CHOPPING TREE - Gaming Sound Effects HD FREE NO Copyright.mp3::AudioStreamMP3::1387202590986597102::1701827105::1701827114::1::::<><>::
+download.jpg::CompressedTexture2D::3915026566141022222::1701826427::1701826429::1::::<><>::
+Geppie.png::CompressedTexture2D::4682549564029017452::1702005615::1702005615::1::::<><>::
+pixel-art-winter-tree-png.webp::CompressedTexture2D::4944370674488334928::1701815100::1701815101::1::::<><>::
+pixil-frame-0 (1).png::CompressedTexture2D::8238257458893387939::1701828449::1701828449::1::::<><>::
+pixil-frame-0 (2).png::CompressedTexture2D::2031383497249491454::1701829596::1701829602::1::::<><>::
+pixil-frame-0 (3).png::CompressedTexture2D::5207447187109854769::1701832108::1701832108::1::::<><>::
+pixilart-sprite.png::CompressedTexture2D::4478688342752122670::1701829916::1701829916::1::::<><>::
+TentAnimations.png::CompressedTexture2D::590083958768597437::1701830524::1701830524::1::::<><>::
+::res://Buildings/::1702093717
+Barracks.gd::GDScript::-1::1702092363::0::1::::<>StaticBody2D<>::
+Barracks.tscn::PackedScene::3301774121804047257::1702093717::0::1::::<><>::uid://in3ujwk113tx::::res://Assets/TentAnimations.png<>res://Buildings/Barracks.gd
+::res://Global/::1702093709
+Global.gd::GDScript::-1::1702092788::0::1::::<>Node<>::
+spawn_unit.gd::GDScript::-1::1701977387::0::1::::<>Node2D<>::
+spawn_unit.tscn::PackedScene::8292929595549747309::1702093709::0::1::::<><>::res://Global/spawn_unit.gd<>uid://cggr5n4xvys62::::res://Assets/pixil-frame-0 (3).png<>uid://p4smpm7lnab::::res://Scenes/SilvemaneGourd.png
+::res://Scenes/::1702093859
+Camera2D.gd::GDScript::-1::1701826717::0::1::::<>Camera2D<>::
+Camera.gd::GDScript::-1::1701665493::0::1::::<>Camera2D<>::
+Embers.mp3::AudioStreamMP3::5860430965579618505::1701745592::1701745592::1::::<><>::
+Eternal Freeze.mp3::AudioStreamMP3::7624757780590524364::1701745587::1701745605::1::::<><>::
+Game.gd::GDScript::-1::1702077512::0::1::::<>Node2D<>::
+Game.tscn::PackedScene::2571099840791295381::1702093859::0::1::::<><>::res://addons/dialogue.json<>res://Scenes/Camera2D.gd<>res://addons/DialogueBox.gd<>uid://dpmw5qu25isgp::::res://Assets/pixil-frame-0 (1).png<>uid://b7yi53yhlh4qq::::res://Assets/Geppie.png<>uid://dstl5mfhwg2en::::res://Units/MeleeUnit.tscn<>res://Scenes/UI.gd<>uid://b420sm5h7hulj::::res://WorldObjects/static_body_2d.tscn<>uid://dgvqv8seyqywa::::res://Scenes/Eternal Freeze.mp3<>res://addons/ez_dialogue/ez_dialogue_node.gd<>uid://cpq3pax4c37v6::::res://Scenes/Embers.mp3<>uid://bnbn0con8eacf::::res://Buildings/Barracks.tscn
+Screenshot 2023-12-04 224043.png::CompressedTexture2D::273626433248621325::1701747645::1701747729::1::::<><>::
+SilvemaneGourd.png::CompressedTexture2D::32759257432115405::1701737937::1701737993::1::::<><>::
+silvermaneGord.png::CompressedTexture2D::21459233783510747::1701737500::1701737496::1::::<><>::
+Suitation.gd::GDScript::-1::1701747278::0::1::::<>AudioStreamPlayer<>::
+UI.gd::GDScript::-1::1701915363::0::1::::<>CanvasLayer<>::
+UI.tscn::PackedScene::4493151272072956086::1702093709::0::1::::<><>::res://Scenes/Camera2D.gd
+WhatstheSuitation.wav::AudioStreamWAV::7302707907488297118::1701742930::1701742942::1::::<><>::
+::res://Units/::1702093709
+MeleeUnit.gd::GDScript::-1::1701968817::0::1::::<>CharacterBody2D<>::
+MeleeUnit.tscn::PackedScene::8462606512980538161::1702093709::0::1::::<><>::uid://p4smpm7lnab::::res://Scenes/SilvemaneGourd.png<>res://Units/MeleeUnit.gd<>uid://dcbqsdlod8oug::::res://Scenes/WhatstheSuitation.wav
+::res://WorldObjects/::1702093709
+static_body_2d.gd::GDScript::-1::1702092363::0::1::::<>StaticBody2D<>::
+static_body_2d.tscn::PackedScene::4479186094650547431::1702093709::0::1::::<><>::res://WorldObjects/static_body_2d.gd<>uid://ccpdcenraun2g::::res://Assets/pixel-art-winter-tree-png.webp<>uid://t08a20lavm1c::::res://Assets/CHOPPING TREE - Gaming Sound Effects HD FREE NO Copyright.mp3

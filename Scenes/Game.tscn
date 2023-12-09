@@ -1,6 +1,85 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcvpvym4f0w5j"]
+[gd_scene load_steps=15 format=3 uid="uid://bcvpvym4f0w5j"]
 
+[ext_resource type="JSON" path="res://addons/dialogue.json" id="1_lyhmc"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="1_tbuft"]
+[ext_resource type="Script" path="res://addons/DialogueBox.gd" id="2_6dwj0"]
+[ext_resource type="Texture2D" uid="uid://dpmw5qu25isgp" path="res://Assets/pixil-frame-0 (1).png" id="2_jo1gs"]
+[ext_resource type="Texture2D" uid="uid://b7yi53yhlh4qq" path="res://Assets/Geppie.png" id="3_6da7p"]
+[ext_resource type="PackedScene" uid="uid://dstl5mfhwg2en" path="res://Units/MeleeUnit.tscn" id="3_e3d23"]
+[ext_resource type="Script" path="res://Scenes/UI.gd" id="4_cryv2"]
+[ext_resource type="PackedScene" uid="uid://b420sm5h7hulj" path="res://WorldObjects/static_body_2d.tscn" id="4_re7jw"]
+[ext_resource type="AudioStream" uid="uid://dgvqv8seyqywa" path="res://Scenes/Eternal Freeze.mp3" id="4_rsi5a"]
+[ext_resource type="Script" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="4_vo618"]
+[ext_resource type="AudioStream" uid="uid://cpq3pax4c37v6" path="res://Scenes/Embers.mp3" id="5_b2xel"]
+[ext_resource type="PackedScene" uid="uid://bnbn0con8eacf" path="res://Buildings/Barracks.tscn" id="8_8f3fg"]
+
+[sub_resource type="GDScript" id="GDScript_vswi0"]
+script/source = "extends Node2D
+#initalized variables
+var units = []
+@onready var music1 = get_node(\"Music/Embers\")
+@onready var music2 = get_node(\"Music/EternalFreeze\")
+@export var dialogue_json: JSON
+@onready var state = {
+	\"startTimer\" = false
+}
+func _ready(): #Called when the function is ready
+	music1.playing = true #play music
+	get_units() #Compile all units into a list
+	startDialogue() #initiate dialogue
+	
+#game_node.connect(\"ui_ready\", master_script, \"on_ui_ready\")
+	
+
+func get_units():
+	units = null
+	units = get_tree().get_nodes_in_group(\"units\")
+	
+func _on_area_selected(object): #pass the properties of the box
+	var start = object.start
+	var end = object.end
+	var area = []
+
+	area.append(Vector2(min(start.x, end.x), min(start.y, end.y)))
+	area.append(Vector2(max(start.x, end.x), max(start.y, end.y)))
+	#Retrieve information about the box created
+	
+	#See if a certain unit is inside a box
+	var ut = get_units_in_area(area)
+	for u in units:
+		u.set_selected(false)
+	for u in ut:
+		u.set_selected(!u.selected)
+func get_units_in_area(area): #select all units in an area.
+	var u = []
+	for unit in units:
+		if unit.position.x > area[0].x and unit.position.x < area[1].x:
+			if unit.position.y > area[0].y and unit.position.y < area[1].y:
+				u.append(unit)
+				#checks if a unit is in the X and Y bounds of the rectangle
+	return u
+
+func startDialogue(): #Begins the dialogue
+	$UI/DialogueBox.dialogueEnd = false
+	($UI/DialogueBox/EzDialogue as EzDialogue).start_dialogue(dialogue_json, state)
+func _on_ez_dialogue_dialogue_generated(response):#clears dialogue after finishing, makes a new one
+	$UI/DialogueBox.clear_dialogue()
+	
+	$UI/DialogueBox.add_text(\"Gepard\",response.text)
+	for choice in response.choices:
+		$UI/DialogueBox.add_choice(choice)
+
+
+
+func _on_ez_dialogue_custom_signal_received(value):#gives neutral ending
+	if value == \"1\":
+		Global.ending = 1
+		get_tree().change_scene_to_file(\"res://Scenes/ending.tscn\")
+
+
+func _on_embers_finished():
+	music2.playing = true 
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfmcq"]
 bg_color = Color(0.121569, 0.121569, 0.121569, 0.509804)
@@ -11,15 +90,203 @@ border_width_bottom = 3
 border_color = Color(0.176471, 0.176471, 0.176471, 1)
 
 [node name="Game" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(-1, -2)
+script = SubResource("GDScript_vswi0")
+dialogue_json = ExtResource("1_lyhmc")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1807.0
+offset_bottom = 1458.0
+texture = ExtResource("2_jo1gs")
+stretch_mode = 1
 
-[node name="Camera" type="Camera2D" parent="UI"]
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(1, 1)
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
+limit_right = 1500
+limit_bottom = 1000
 script = ExtResource("1_tbuft")
 
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_cryv2")
+
 [node name="Panel2" type="Panel" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = -2.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vfmcq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.001
+anchor_top = 0.002
+anchor_right = 0.017
+anchor_bottom = 0.018
+offset_left = 37.848
+offset_top = 35.704
+offset_right = 72.416
+offset_bottom = 48.336
+theme_override_colors/font_color = Color(0.411765, 0.294118, 0.0980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "test"
+
+[node name="DialogueBox" type="Node2D" parent="UI"]
+z_index = 10
+position = Vector2(124, 539)
+script = ExtResource("2_6dwj0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DialogueBox"]
+offset_left = 50.0
+offset_top = -65.0
+offset_right = 324.0
+offset_bottom = 82.0
+
+[node name="Title" type="Label" parent="UI/DialogueBox/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "TEXT"
+
+[node name="Content" type="Label" parent="UI/DialogueBox/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="UI/DialogueBox/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.92
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/DialogueBox"]
+position = Vector2(-44, 21)
+scale = Vector2(3.18, 3.18)
+texture = ExtResource("3_6da7p")
+
+[node name="EzDialogue" type="Node" parent="UI/DialogueBox"]
+script = ExtResource("4_vo618")
+
+[node name="showTime" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_right = 0.435
+anchor_bottom = 0.104
+offset_left = 491.0
+offset_top = 1.0
+offset_right = 308.88
+offset_bottom = -43.392
+text = "TIME:"
+
+[node name="Timer" type="Timer" parent="UI/showTime"]
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(430, 172)
+
+[node name="Tree2" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(393, 352)
+
+[node name="Tree3" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(658, 129)
+
+[node name="Tree4" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(552, 298)
+
+[node name="Tree5" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(838, 136)
+
+[node name="Tree6" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(752, 385)
+
+[node name="StaticBody2D" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(256, 199)
+
+[node name="Tree7" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(161, 431)
+
+[node name="Tree8" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(320, 551)
+
+[node name="Tree9" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(506, 488)
+
+[node name="Tree10" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(866, 289)
+
+[node name="Tree11" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(685, 549)
+
+[node name="Tree12" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(962, 561)
+
+[node name="Tree13" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(1001, 410)
+
+[node name="Tree14" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(954, 119)
+
+[node name="Tree15" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(1094, 290)
+
+[node name="Tree16" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(1099, 549)
+
+[node name="Tree17" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(744, 231)
+
+[node name="Tree18" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(632, 396)
+
+[node name="Tree19" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(783, 508)
+
+[node name="Tree20" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(897, 424)
+
+[node name="Tree21" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(972, 259)
+
+[node name="Tree22" parent="Objects" instance=ExtResource("4_re7jw")]
+position = Vector2(1077, 122)
+
+[node name="Music" type="Node2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="EternalFreeze" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_rsi5a")
+
+[node name="Embers" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("5_b2xel")
+volume_db = -5.2
+
+[node name="Houses" type="Node2D" parent="."]
+position = Vector2(0, 5)
+
+[node name="Barrack" parent="Houses" instance=ExtResource("8_8f3fg")]
+z_as_relative = true
+position = Vector2(110, 181)
+
+[node name="Melee" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 5)
+
+[node name="MeleeUnit2" parent="Melee" instance=ExtResource("3_e3d23")]
+position = Vector2(111, 203)
+
+[node name="Unit" parent="Melee" instance=ExtResource("3_e3d23")]
+position = Vector2(140, 198)
+
+[node name="Unit2" parent="Melee" instance=ExtResource("3_e3d23")]
+position = Vector2(71, 198)
+
+[connection signal="custom_signal_received" from="UI/DialogueBox/EzDialogue" to="." method="_on_ez_dialogue_custom_signal_received"]
+[connection signal="dialogue_generated" from="UI/DialogueBox/EzDialogue" to="." method="_on_ez_dialogue_dialogue_generated"]
+[connection signal="end_of_dialogue_reached" from="UI/DialogueBox/EzDialogue" to="UI/DialogueBox" method="_on_ez_dialogue_end_of_dialogue_reached"]
+[connection signal="timeout" from="UI/showTime/Timer" to="UI/DialogueBox" method="_on_timer_timeout"]
+[connection signal="finished" from="Music/Embers" to="." method="_on_embers_finished"]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnbn0con8eacf"]
+
+[ext_resource type="Texture2D" uid="uid://in3ujwk113tx" path="res://Assets/TentAnimations.png" id="1_3nsg0"]
+[ext_resource type="Script" path="res://Buildings/Barracks.gd" id="1_44bi3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_156as"]
+radius = 32.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r26ii"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.968627, 0.0941176, 1)
+border_blend = true
+
+[sub_resource type="Animation" id="Animation_i5jod"]
+resource_name = "Light"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ean85"]
+_data = {
+"Light": SubResource("Animation_i5jod")
+}
+
+[node name="Barrack" type="StaticBody2D"]
+z_as_relative = false
+y_sort_enabled = true
+scale = Vector2(2, 2)
+input_pickable = true
+script = ExtResource("1_44bi3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+z_as_relative = false
+position = Vector2(0.5, -22)
+shape = SubResource("CircleShape2D_156as")
+
+[node name="Selected" type="Panel" parent="."]
+offset_left = -35.0
+offset_top = -40.0
+offset_right = 35.0
+offset_bottom = 5.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_r26ii")
+metadata/_edit_use_anchors_ = true
+
+[node name="Pixilart-sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -27)
+texture = ExtResource("1_3nsg0")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pixilart-sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_ean85")
+}
+speed_scale = 0.903
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

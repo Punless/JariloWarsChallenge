@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddljybhsuhqy0"]
+
+[ext_resource type="Script" path="res://addons/DialogueBox.gd" id="1_550yx"]
+[ext_resource type="Texture2D" uid="uid://b7yi53yhlh4qq" path="res://Assets/Geppie.png" id="2_hrj0h"]
+[ext_resource type="Script" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_xjqfq"]
+
+[node name="DialogueBox" type="Node2D"]
+position = Vector2(125, 541)
+script = ExtResource("1_550yx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 50.0
+offset_top = -65.0
+offset_right = 324.0
+offset_bottom = 82.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "TEXT"
+
+[node name="Content" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.92
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-44, 21)
+scale = Vector2(3.18, 3.18)
+texture = ExtResource("2_hrj0h")
+
+[node name="EzDialogue" type="Node" parent="."]
+script = ExtResource("3_xjqfq")
+
+[connection signal="dialogue_generated" from="EzDialogue" to="." method="_on_ez_dialogue_dialogue_generated"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://lodi8x3hqjej"]
+
+[ext_resource type="Script" path="res://Ending.gd" id="1_f0kpb"]
+
+[node name="Ending" type="Node2D"]
+script = ExtResource("1_f0kpb")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -8.0
+offset_top = -6.0
+offset_right = 1161.0
+offset_bottom = 646.0
+
+[node name="EndingText" type="Label" parent="."]
+offset_left = 76.0
+offset_top = 29.0
+offset_right = 1056.0
+offset_bottom = 613.0
+justification_flags = 171

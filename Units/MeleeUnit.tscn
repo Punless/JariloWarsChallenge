@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dstl5mfhwg2en"]
+
+[ext_resource type="Texture2D" uid="uid://p4smpm7lnab" path="res://Scenes/SilvemaneGourd.png" id="1_mpm6d"]
+[ext_resource type="Script" path="res://Units/MeleeUnit.gd" id="1_tbqqp"]
+[ext_resource type="AudioStream" uid="uid://dcbqsdlod8oug" path="res://Scenes/WhatstheSuitation.wav" id="3_0hvf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbbbv"]
+size = Vector2(22, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r26ii"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.968627, 0.0941176, 1)
+border_blend = true
+
+[node name="Unit" type="CharacterBody2D"]
+position = Vector2(-2, 4)
+script = ExtResource("1_tbqqp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -7)
+shape = SubResource("RectangleShape2D_fbbbv")
+
+[node name="Box" type="Panel" parent="."]
+offset_left = -13.0
+offset_top = -11.0
+offset_right = 15.0
+offset_bottom = 4.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r26ii")
+metadata/_edit_use_anchors_ = true
+
+[node name="SilvemaneGourd" type="Sprite2D" parent="."]
+position = Vector2(13, -22)
+texture = ExtResource("1_mpm6d")
+hframes = 2
+
+[node name="Suitation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0hvf8")
+volume_db = -20.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

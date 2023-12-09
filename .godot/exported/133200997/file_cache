@@ -1,0 +1,13 @@
+res://addons/ez_dialogue/main_screen/dialogue_graph_node.tscn::b69a2f422852e45f386573578ca10659::1702005845::res://.godot/exported/133200997/export-b0bad8b68617ce21c44db2830740c943-dialogue_graph_node.scn
+res://addons/ez_dialogue/main_screen/main.tscn::933934345d54acbfb1ffce43ebb02759::1702005845::res://.godot/exported/133200997/export-43f39583e4db661e1764d26b2d00ac1e-main.scn
+res://addons/ChoiceButton.tscn::2d94d380c9c5989f80126be543d1a51a::1702114127::res://.godot/exported/133200997/export-f1f29841af2f369e78d78c4f6c48239c-ChoiceButton.scn
+res://addons/dialogue_box.tscn::90219cf30c19369fe91e1bb4837a65fe::1702114127::res://.godot/exported/133200997/export-b3eefa3d58491fa949c0f67e5cae1545-dialogue_box.scn
+res://Buildings/Barracks.tscn::96c2dce3cd11d0499e2e55ee24677f5a::1702114127::res://.godot/exported/133200997/export-2e982641ce3b506184d875311f8bf913-Barracks.scn
+res://Global/spawn_unit.tscn::5f5556a49f2d6dccac81fe76681d43cb::1702114127::res://.godot/exported/133200997/export-56fc843afad9c54dd42e48d6c4a6bfbd-spawn_unit.scn
+res://Scenes/Game.tscn::e22b47daa686e1186be67aa6df357cf0::1702114127::res://.godot/exported/133200997/export-8ec1ce4394550eef6b399142f35b815f-Game.scn
+res://Scenes/ending.tscn::46ca65f3af1c393d4d21b3b493592207::1702114127::res://.godot/exported/133200997/export-934d3302470c70ee61f80d5536329f5d-ending.scn
+res://Scenes/UI.tscn::9f4ef0483175bbb9408a638117ebdee5::1702114127::res://.godot/exported/133200997/export-4f62ab20f4ccf50badf9090e15390996-UI.scn
+res://Units/MeleeUnit.tscn::87635e7aed0d63b6092037cba6e6da98::1702114127::res://.godot/exported/133200997/export-a2039b5ebffb72456fea49b6eef09772-MeleeUnit.scn
+res://WorldObjects/static_body_2d.tscn::0d301d68e850e0afb0e0193d8749c443::1702114127::res://.godot/exported/133200997/export-ed8e7cae141da40d67866dd6aa84dce3-static_body_2d.scn
+res://menu.tscn::7ccf85a579ea69303cf3adc2fda62f02::1702114127::res://.godot/exported/133200997/export-a4951207776b25ee5c8b2b05c1463587-menu.scn
+res://ui.tscn::f719a12ec3f04be598bdf55dcfe973e1::1702114127::res://.godot/exported/133200997/export-5d2f649bfda0e984c5f95c948cc9f360-ui.scn
